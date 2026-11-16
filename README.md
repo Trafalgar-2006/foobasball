@@ -340,7 +340,8 @@ is in [docs/roadmap.md](docs/roadmap.md). Headlines:
 
 ## Artifact links
 
-* Google Drive (annotated videos, CSVs, JSONs): **TBD link**
+* Google Drive (annotated videos, per-frame CSVs, summary JSONs):
+  <https://drive.google.com/drive/folders/1tYhHafqFOq1Tt9TkenH3JT_bKFY0GNZC>
 * Colab notebook: [`notebooks/colab_pipeline.ipynb`](notebooks/colab_pipeline.ipynb)
 
 ## Repository layout
