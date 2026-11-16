@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+data/
+datasets/
+outputs/
+runs/
+research_notes/
+reports/
+*.mp4
+*.part
+# Large public weights are downloaded by tools/download_weights.py; the two small
+# models fine-tuned by tools/train.py are committed.
+weights/*.pt
+!weights/basketball-yolo11s.pt
+!weights/jersey-number-yolo11n.pt
+yolo11*.pt

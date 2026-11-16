@@ -1,0 +1,9 @@
+# torch + torchvision: install the CUDA build for your machine first (preinstalled on Colab).
+ultralytics==8.4.211   # pinned: BoT-SORT API and the default tracker changed across 8.4.x
+onnxruntime>=1.18      # PARSeq jersey-number recognizer (CPU is fast enough)
+scenedetect>=0.6.4     # camera-cut detection (PySceneDetect, BSD-3)
+huggingface_hub>=0.25  # PARSeq weights + basketball training data
+scikit-learn>=1.5
+lap>=0.5
+gdown>=5.2             # Roboflow football weights (tools/download_weights.py)
+pytest>=8

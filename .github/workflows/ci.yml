@@ -1,0 +1,23 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install (ffmpeg, CPU torch)
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+      - name: Unit + integration tests
+        run: pytest -q
+      - name: Plumbing smoke test (synthetic clip, committed basketball model, CPU)
+        run: |
+          ffmpeg -loglevel error -f lavfi -i testsrc=size=1280x720:rate=10 -t 3 -pix_fmt yuv420p smoke.mp4
+          python -m sportsvision basketball smoke.mp4 --out out --max-frames 30 --no-jersey
+          python -c "import csv, json; h = next(csv.reader(open('out/smoke_tracks.csv'))); assert h[0] == 'frame_id' and h[-1] == 'pitch_y', h; s = json.load(open('out/smoke_summary.json')); assert {'meta', 'identity', 'teams', 'tracks', 'shots', 'shot_totals'} <= set(s), s.keys()"
